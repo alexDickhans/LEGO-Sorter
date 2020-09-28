@@ -6,6 +6,7 @@ import time
 import cv2
 import numpy as np
 from PIL import Image, ImageOps
+np.set_printoptions(suppress=True)
 
 def loadModel(filePath):
     """Load the Keras .h5 model
@@ -33,7 +34,6 @@ def getWebcam(webcamPath):
         print("Failed to get webcam. Error: ")
         print(e)      
     pil_im = Image.fromarray(cv2_im)
-    pil_im.show()
 
     return pil_im
 
@@ -49,3 +49,21 @@ def prepareImage(image, width):
     npData[0] = normalizedImageArray
 
     return npData
+
+def openLabels(filePath):
+    labelList = open(filePath).read().splitlines()
+    return labelList
+
+def getLabel(labelList, index):
+    """Get a lebel for a list with an index
+
+    Args:
+        labelList (list(String)): list of the labels.txt file
+        index (int): the index of the label
+
+    Returns:
+        String: label
+    """    
+    for i in labelList:
+        if i[0] == str(index):
+            return i[1:len(i)]
