@@ -20,14 +20,11 @@ if __name__ == "__main__":
 
     # get the largest value
     largest = max(prediction[0])
-    index = int(numpy.where(prediction[0]==largest)[0])
-    
+    index = int(numpy.where(prediction[0] == largest)[0])
+
     # Get the labels
     labels = utils.openLabels("model/labels.txt")
     label = utils.getLabel(labels, index)
 
     # Run the user defined function
     colors.runColor(label, index, prediction)
-
-
-
